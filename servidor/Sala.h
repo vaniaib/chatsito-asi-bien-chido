@@ -17,6 +17,7 @@ private :
   ListaUsuarios getUsuarios();
   // bool estaInvitado();
   void agregarAlasala(string s);
+  void eliminadeSala(string s);
   
 
 

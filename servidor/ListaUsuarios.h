@@ -17,10 +17,8 @@ public:
     map<string, string> getLista() const;
     void agregaUsuario(string nombre);
     void eliminaUsuario(string nombre);
-    void cambiaStatus(string usuario, string status);
-    
- private:
-    bool ValidaUsuario(string username);
+    void cambiaStatus(string usuario, string status);    
+    bool validaUsuario(string username);
 };
 
 #endif
