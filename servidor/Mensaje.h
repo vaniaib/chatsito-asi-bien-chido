@@ -8,7 +8,7 @@ using json = nlohmann::json;
 class Mensaje{
   
 public:
-  Mensaje(){};
+  // Mensaje(){};
   //enumeracion para los tipos
   enum class Type{
     
@@ -51,8 +51,14 @@ public:
   enum class Operation{
 
     IDENTIFY,
+
+    STATUS,
+
+    USERS,
     
     TEXT,
+
+    PUBLIC_TEXT,
 
     NEW_ROOM,
 
@@ -65,6 +71,8 @@ public:
     ROOM_TEXT,
     
     LEAVE_ROOM,
+
+    DISCONNECT
     
   };
 
@@ -86,12 +94,25 @@ public:
     NO_SUCH_USER,    
     
   };
-  string cadenaTipo(Type t);
-  string cadenaEstado(Status s);
-  string cadenaOperacion(Operation o);
-  string cadenaResultado(Result r);
+  //  para respuestas
+  static string cadenaTipo(Type t);
+  static string cadenaStatus(Status s);
+  static string cadenaOperacion(Operation o);
+  static string cadenaResultado(Result r);
   void anotaRespuesta(Type tipo, Operation operacion, Result resultado, string extra);
-    
+  // para mensajes que manda el servidor
+  //  static string anotaRespuesta(Operation operacion,Result resultado, const string& extra);
+  static string nuevoUsuario(const string& username);
+  static string nuevoStatus(const string& username, const Status& status);
+  static string listaUsuarios(const map<string, Status>& usuarios);
+  static string textoPrivado(const string& username,const string& text);
+  static string textoPublico(const string& username,const string& text);
+  static string invitacion(const string& username,const string& roomname);
+  static string unioSala(const string& username, const string& roomname);
+  static string listausuariosSala(const string& roomname, const map<std::string, Status>& usuarios);
+  static string textoSala(const string& roomname, const string& username,const string& text);
+  static string salioSala(const string& roomname, const string& username);
+  static string desconectado(const string& username);    
 };
 
 #endif
