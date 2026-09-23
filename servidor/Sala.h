@@ -8,16 +8,19 @@ class Sala{
 private :
   ListaUsuarios usuariosEnlasala;
   string nombre;
+  mutable mutex mutexSala;
   //  bool invitado;
- public:
-  Sala(string nombre){
-    this -> nombre = nombre;
-  };
-  //  Sala(){};
-  ListaUsuarios getUsuarios();
-  // bool estaInvitado();
-  void agregarAlasala(string s);
-  void eliminadeSala(string s);
+public:
+  map<string, bool> invitados;
+  Sala(const string& nombre);
+  // {
+  //   this -> nombre = nombre;
+  // };
+  //  Sala(){}; 
+  string getNombre();  
+  ListaUsuarios& getUsuarios();
+  void agregarAlasala(const string& s);
+  void eliminadeSala(const string& s);
   
 
 

@@ -2,13 +2,20 @@
 #include "Sala.h"
 using namespace std;
 
-ListaUsuarios Sala:: getUsuarios(){
+Sala::Sala(const string& nombre): nombre(nombre){}
+ListaUsuarios& Sala:: getUsuarios(){
+  lock_guard<mutex> lock(mutexSala);
     return usuariosEnlasala;
 }
-void Sala::agregarAlasala(string username){
+string Sala:: getNombre(){
+  return nombre;
+}
+void Sala::agregarAlasala(const string& username){
+  lock_guard<mutex> lock(mutexSala);
   usuariosEnlasala.agregaUsuario(username); 
 }
-void Sala::eliminadeSala(string username){
+void Sala::eliminadeSala(const string& username){
+  lock_guard<mutex> lock(mutexSala);
   usuariosEnlasala.eliminaUsuario(username); 
 }
 
