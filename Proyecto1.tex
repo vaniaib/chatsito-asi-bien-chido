@@ -1,0 +1,705 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem}
+%\usepackage{forest}
+\usepackage{dirtree}
+\usepackage{fontawesome5}
+\usepackage[utf8]{inputenc}
+\usepackage{multicol}
+\usepackage[T1]{fontenc}
+\usepackage{tabularx}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{lmodern}
+\usepackage{helvet}
+\usepackage[breaklinks=true]{hyperref}
+\usepackage[svgnames]{xcolor}
+\usepackage[table]{xcolor}
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage[customcolors]{hf-tikz}
+\usepackage[most]{tcolorbox}
+\usetikzlibrary{shadows}
+\usepackage{tgheros}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{listings}
+\usepackage[spanish]{babel} 
+\usepackage{xcolor,graphicx}
+\usepackage{tikz}
+\usetikzlibrary{arrows,shapes,positioning,shadows,trees}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%colors
+\definecolor{rositapastel}{RGB}{255, 135, 159}
+\titleformat{\section}
+  {\color{rositapastel}\normalfont\Large\bfseries}
+  {\thesection}{1em}{}
+
+\titleformat{\subsection}
+  {\color{rositapastel}\normalfont\large\bfseries}
+  {\thesubsection}{1em}{}
+
+\titleformat{\subsubsection}
+  {\color{rositapastel}\normalfont\normalsize\bfseries}
+  {\thesubsubsection}{1em}{}
+%%%%%%%%%%%%%%%%%%%%%%
+% Mis comandos
+\newcounter{recordatorioCounter}
+\newcommand{\recordatorio}{%
+  \stepcounter{recordatorioCounter}% avanza el contador
+  \textbf{\textcolor{rositapastel}{Recordatorio \therecordatorioCounter : }}%
+}
+
+
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{rositapastel!23},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                   
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+% Icono Carpeta
+\newcommand{\foldericon}{\faFolderOpen~}
+
+\definecolor{foldercolor}{RGB}{255, 193, 7}
+\definecolor{pdfcolor}{RGB}{220, 53, 69}
+\definecolor{readmecolor}{RGB}{40, 167, 69}
+
+\renewcommand{\foldericon}{\textcolor{foldercolor}{\faFolder}}
+\newcommand{\pdficon}{\textcolor{pdfcolor}{\faFilePdf}}
+\newcommand{\txticon}{\textcolor{txtcolor}{\faFileAlt}}
+\newcommand{\zipicon}{\textcolor{gray}{\faFileArchive}}
+
+
+
+% Set up fancy header/footer
+\pagestyle{fancy}
+\fancyhead[LO,L]{UNAM}
+\fancyhead[RO,R]{\textit{\textsc{Proyecto}}}   
+\fancyfoot[LO,L]{Facultad De Ciencias, 2026-I}
+\fancyfoot[CO,C]{\thepage}
+\fancyfoot[RO,R]{Modelado y Programación}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+%%%%%%%%%%%%%%%%%%%%%%
+
+\newdimen\digitwidth
+\settowidth\digitwidth{0}
+\def~{\hspace{\digitwidth}}
+
+% Cambiar color de secciones
+\titleformat{\section}
+  {\color{rositapastel}\normalfont\Large\bfseries}
+  {\thesection}{1em}{}
+
+\titleformat{\subsection}
+  {\color{rositapastel}\normalfont\large\bfseries}
+  {\thesubsection}{1em}{}
+
+\titleformat{\subsubsection}
+  {\color{rositapastel}\normalfont\normalsize\bfseries}
+  {\thesubsubsection}{1em}{}
+
+% Cambiar color de ítems en listas numeradas
+\setlist[enumerate]{label=\textcolor{rositapastel}{\arabic*.}, left=1.5em}
+\setlist[itemize]{label=\textcolor{rositapastel}{\alph*}, left=1.5em}
+\setlist[itemize]{label=\textcolor{rositapastel}{\textbullet}, left=1.5em}
+
+
+\begin{document}
+\begin{titlepage}
+\begin{center}
+
+\textsc{\Large\uppercase{Universidad Nacional Autónoma De México}}\\[0.4cm]	
+
+{\huge \Large \uppercase{Facultad de Ciencias, 2027-I} \\[0.4cm] }
+{\huge \Large \uppercase{Facultad de Ciencias} \\[1cm] }
+
+%%\includegraphics[scale=.2]{image.png}\\[0.6cm]
+
+
+%%% Título
+\rule{\linewidth}{0.4pt}\\[0.7em]
+{ \color{rositapastel} \textsc{\Large Proyecto:}} \\[0.7em] 
+ \textit{\Large Chat}
+ \\[0.1em] 
+\rule{\linewidth}{0.4pt}\\[2em]
+
+
+\color{black!80!black}{\large \uppercase{\textsc{ Profesor:}}}\\[0.25cm]
+
+\begin{tabular}{l}
+  \large Canek Pelaez Valdez \\[0.4cm]
+\end{tabular}
+
+\large \uppercase{Ayudante de Teoría:}\\[0.2cm]
+\centering
+\begin{tabular}{l}
+
+\large Daniel Rojo Mata \\[0.4cm]
+\end{tabular}
+
+\large \uppercase{Ayudante de Laboratorio:}\\[0.2cm]
+\centering
+\begin{tabular}{l}
+
+\large Irvin Javier Cruz Gonzalez\\[0.4cm]
+\end{tabular}
+
+\vfill
+
+\end{center}
+\end{titlepage}
+
+\section*{Resumen}
+La idea del Proyecto 1 es crear un chat en línea en el que múltiples clientes se puedan conectar y mandar mensajes entre ellos, con otras diversas operaciones dentro de el chat, la idea es tener una sala general para todos los usuarios y que además cada uno pueda hacer sus salas privadas, invitando a otros usuarios, también podrán solicitar la lista de usuarios conectados, tanto para la sala general como para las que son parte, actualizar su estado, y desconectarse del chat.
+En este reporte vamos a ver primero una introducción con una descripción del proyecto, luego vamos a ver el proceso de analisis y modelado, hasta llegar a la implementación y posteriormente explicar las conclusiones.
+
+\section*{Introduccion}
+Este proyecto es
+
+
+
+
+
+
+
+\newpage
+\section*{Analisis y diseño}
+
+E chat se divide en dos partes, cliente y servidor:
+
+\subsection*{Cliente}
+
+El cliente es el que representa al usuario y debe tener ciertas operaciones como:
+
+
+
+  
+\newpage
+        \begin{itemize}
+\item
+          \begin{center}
+          \begin{tikzpicture}[
+            every node/.style = {
+              draw,
+              circle,
+              minimum size=1.5cm
+            },
+            level 1/.style = {sibling distance=4cm},
+            edge from parent/.style = {draw, -latex}
+          ]
+          \node[draw,,rounded corners] {Raiz}
+            child {
+              node[fill=red!20] {}
+              edge from parent node[left,draw=none,pos=0.1] {0}
+            }
+            child {
+              node[fill=rositapastel!70] {A}
+              edge from parent node[right,draw=none,pos=0.1] {1}
+            };
+          \end{tikzpicture}
+          \end{center}   
+          
+        \textbf{RECUERDA} en las ramas de la izquierda va un cero y en las de la derecha va 1 y se coloca la letra con mayor frecuencia de repetición.
+
+        \item A partir de aquí esto será un proceso iterativo, donde siempre tomaremos el nodo izquierdo para derivar 2 ramas más y colocar en la rama de la derecha la siguiente letra con mayor frecuencia, por lo tanto nuestra segunda aproximación del árbol binario es esta:
+
+
+            \begin{center}
+            \begin{tikzpicture}[
+              every node/.style = {
+                draw,
+                circle,
+                minimum size=1.5cm
+              },
+              level 1/.style = {sibling distance=4cm},
+              level 2/.style = {sibling distance=3cm},
+              edge from parent/.style = {draw, -latex}
+            ]
+            \node[draw,,rounded corners] {Raiz}
+              child {
+                node [fill=red!20] {}
+                child {
+                  node[fill=red!20] {}
+                  edge from parent node[left,draw=none,pos=0.1] {0}
+                }
+                child {
+                  node[fill=rositapastel!70] {R}
+                  edge from parent node[right,draw=none,pos=0.1] {1}
+                }
+                edge from parent node[left,draw=none,pos=0.1] {0}
+              }
+              child {
+                node[fill=rositapastel!70] {A}
+                edge from parent node[right,draw=none,pos=0.1] {1}
+              };
+            \end{tikzpicture}
+            \end{center}
+
+ \newpage       
+  %%     Podemos observar que las demás letras su frecuencia es la misma en este caso no importada si colocamos primero una y despúes otra. Repetimos los mismos pasos con el resto de las letras y finalmente tenemos el árbol final resultante:
+      
+  %%     \begin{center}
+  %%     \begin{tikzpicture}[scale=0.8,
+  %%       every node/.style = {
+  %%         draw,
+  %%         circle,
+  %%         minimum size=1cm,
+  %%         scale=0.8,
+  %%         transform shape
+  %%       },
+  %%       level 1/.style = {sibling distance=6cm},
+  %%       level 2/.style = {sibling distance=4cm},
+  %%       level 3/.style = {sibling distance=3cm},
+  %%       edge from parent/.style = {draw, -latex}
+  %%     ]
+  %%     \node[draw,,rounded corners] {Raiz}
+  %%       child {
+  %%         node[fill=red!20] {}
+  %%         child {
+  %%           node[fill=red!20] {}
+  %%           child {
+  %%             node[fill=red!20] {}
+  %%             child {
+  %%               node[fill=red!20] {}
+  %%               child {
+  %%                 node[fill=red!20] {}
+  %%                 child {
+  %%                   node[fill=red!20] {}
+  %%                   child {
+  %%                     node[fill=red!20] {}
+  %%                     edge from parent node[left,draw=none,pos=0.3] {0}
+  %%                   }
+  %%                   child {
+  %%                     node[fill=antiquefuchsia!70] {B}
+  %%                     edge from parent node[right,draw=none,pos=0.3] {1}
+  %%                   }
+  %%                   edge from parent node[left,draw=none,pos=0.3] {0}
+  %%                 }
+  %%                 child {
+  %%                   node[fill=antiquefuchsia!70] {D}
+  %%                   edge from parent node[right,draw=none,pos=0.3] {1}
+  %%                 }
+  %%                 edge from parent node[left,draw=none,pos=0.3] {0}
+  %%               }
+  %%               child {
+  %%                 node[fill=antiquefuchsia!70] {K}
+  %%                 edge from parent node[right,draw=none,pos=0.3] {1}
+  %%               }
+  %%               edge from parent node[left,draw=none,pos=0.3] {0}
+  %%             }
+  %%             child {
+  %%               node[fill=antiquefuchsia!70] {H}
+  %%               edge from parent node[right,draw=none,pos=0.3] {1}
+  %%             }
+  %%             edge from parent node[left,draw=none,pos=0.3] {0}
+  %%           }
+  %%           child {
+  %%             node[fill=antiquefuchsia!70] {V}
+  %%             edge from parent node[right,draw=none,pos=0.3] {1}
+  %%           }
+  %%           edge from parent node[left,draw=none,pos=0.3] {0}
+  %%         }
+  %%         child {
+  %%           node[fill=antiquefuchsia!70] {R}
+  %%           edge from parent node[right,draw=none,pos=0.3] {1}
+  %%         }
+  %%         edge from parent node[left,draw=none,pos=0.3] {0}
+  %%       }
+  %%       child {
+  %%         node[fill=antiquefuchsia!70] {A}
+  %%         edge from parent node[right,draw=none,pos=0.3] {1}
+  %%       };
+  %%     \end{tikzpicture}
+  %%     \end{center}
+
+   \end{itemize}
+ 
+  
+  \subsubsection*{  Recorriendo el árbol.}
+   
+  Ahora que ya tenemos construido nuestro árbol, podemos recorrerlo para buscar una letra, por ejemplo, si queremos encontrar a la letra 'V' tendríamos que hacer el siguiente recorrido marcado en color rojo:
+
+      % No marca el recorrido a una sola hoja sino a todo el árbol. Tu tarea será encontrar la solución.
+
+      %%      \begin{center}
+      %% \begin{tikzpicture}[scale=0.8,
+      %%   every node/.style = {
+      %%     draw,
+      %%     circle,
+      %%     minimum size=1cm,
+      %%     scale=0.8,
+      %%     transform shape
+      %%   },
+      %%   level 1/.style = {sibling distance=6cm},
+      %%   level 2/.style = {sibling distance=4cm},
+      %%   level 3/.style = {sibling distance=3cm},
+      %%   edge from parent/.style = {draw, -latex},
+      %%   highlightpath/.style = {edge from parent/.style = {draw=red, very thick, -latex}}
+      %% ]
+      %% \node[draw,,rounded corners] {Raiz}
+      %%   child[highlightpath] {
+      %%     node[fill=red!20] {}
+      %%     child[highlightpath] {
+      %%       node[fill=red!20] {}
+      %%       child[missing]
+      %%       child[highlightpath] {
+      %%         node[fill=red!20] {V}
+      %%         edge from parent node[right,draw=none,pos=0.3] {1}
+      %%       }
+      %%       edge from parent node[left,draw=none,pos=0.3] {0}
+      %%     }
+      %%     child {
+      %%       node[fill=antiquefuchsia!70] {R}
+      %%       edge from parent node[right,draw=none,pos=0.3] {1}
+      %%     }
+      %%     edge from parent node[left,draw=none,pos=0.3] {0}
+      %%   }
+      %%   child {
+      %%     node[fill=antiquefuchsia!70] {A}
+      %%     edge from parent node[right,draw=none,pos=0.3] {1}
+      %%   };
+      %% \end{tikzpicture}
+      %% \end{center}
+
+  
+  
+      Como podemos observar, vemos representado por 3 bits y no por 8, para llegar a la letra 'V' siguiendo la ruta marcada en rojo que corresponde a la secuencia '001', es decir, 
+      primero tomamos la rama izquierda (0), luego otra rama izquierda (0), y finalmente la rama derecha (1).
+
+      Para 'A' solo se hace un simple recorrido y se obtiene 1 como se representación binaria, que igual reducimos de 8 a 1 bit.        
+
+
+      \begin{table}[h]
+            \centering
+            \begin{tabular}{|c|c|c|}
+                \hline
+                Letra & Frecuencia & Representación\\
+                \hline
+                 A & 5 & 1 \\
+                \hline
+                 R & 2 & 01 \\
+                \hline
+                 V & 1 & 001 \\
+                \hline
+                 H & 1 & 0001 \\
+                \hline
+                 K & 1 & 00001\\
+                \hline
+                 D & 1  & 000001 \\
+                \hline
+                 B & 1 & 0000001\\
+                \hline
+            \end{tabular}
+            \caption{Representación binaria del resto de letras}
+            \label{tab:frecuencias}
+        \end{table}
+
+   \subsubsection*{Nueva representación binaria} 
+   
+    \begin{center}
+      \texttt{1001011000100001100000110000001011}
+    \end{center}    
+       
+      \begin{center}
+%%          \includegraphics[scale=.35]{abra.png}
+        \end{center}
+
+        Hemos pasado de 96 bits a 34
+
+  \subsection*{Huffman Decoding} 
+
+  El decodificador debe saber qué hay de inicio un archivo comprimido, leerlo y construir el árbol de Huffman para el alfabeto. Solo entonces puede leer y decodificar el resto de su entrada. Es decir para este algoritmo debe recibir una \textbf{cadena de bits} y \textbf{el árbol de Huffman de esa cadena}. \\
+
+
+  El algoritmo comienza:
+  \begin{enumerate}
+    \item Desde la raiz del árbol, lee el primer bit de entrada (del texto ya comprimido), si es cero recorre la rama izquierda del árbol, si es 1 recorre la rama derecha.
+    \item Recorre el árbol de acuerdo al bit hasta llegar a un nodo hoja.
+    \item Ya que llegó a un hoja genera el símbolo original. Repite hasta procesar todos los bits.
+  \end{enumerate} 
+
+\newpage
+%% \subsubsection*{Ejemplo - Decoding}
+
+%% Recibimos el arbol ya construido y la representación binaria de la cadena ya codificada/comprimida 
+
+%%    \begin{multicols}{2}
+%%       \begin{center}
+%%       \begin{tikzpicture}[scale=0.55,
+%%         every node/.style = {
+%%           draw,
+%%           circle,
+%%           minimum size=1cm,
+%%           scale=0.8,
+%%           transform shape
+%%         },
+%%         level 1/.style = {sibling distance=6cm},
+%%         level 2/.style = {sibling distance=4cm},
+%%         level 3/.style = {sibling distance=3cm},
+%%         edge from parent/.style = {draw, -latex}
+%%       ]
+%%       \node[draw,,rounded corners] {Raiz}
+%%         child {
+%%           node[fill=red!20] {}
+%%           child {
+%%             node[fill=red!20] {}
+%%             child {
+%%               node[fill=red!20] {}
+%%               child {
+%%                 node[fill=red!20] {}
+%%                 child {
+%%                   node[fill=red!20] {}
+%%                   child {
+%%                     node[fill=red!20] {}
+%%                     child {
+%%                       node[fill=red!20] {}
+%%                       edge from parent node[left,draw=none,pos=0.3] {0}
+%%                     }
+%%                     child {
+%%                       node[fill=antiquefuchsia!70] {B}
+%%                       edge from parent node[right,draw=none,pos=0.3] {1}
+%%                     }
+%%                     edge from parent node[left,draw=none,pos=0.3] {0}
+%%                   }
+%%                   child {
+%%                     node[fill=antiquefuchsia!70] {D}
+%%                     edge from parent node[right,draw=none,pos=0.3] {1}
+%%                   }
+%%                   edge from parent node[left,draw=none,pos=0.3] {0}
+%%                 }
+%%                 child {
+%%                   node[fill=antiquefuchsia!70] {K}
+%%                   edge from parent node[right,draw=none,pos=0.3] {1}
+%%                 }
+%%                 edge from parent node[left,draw=none,pos=0.3] {0}
+%%               }
+%%               child {
+%%                 node[fill=antiquefuchsia!70] {H}
+%%                 edge from parent node[right,draw=none,pos=0.3] {1}
+%%               }
+%%               edge from parent node[left,draw=none,pos=0.3] {0}
+%%             }
+%%             child {
+%%               node[fill=antiquefuchsia!70] {V}
+%%               edge from parent node[right,draw=none,pos=0.3] {1}
+%%             }
+%%             edge from parent node[left,draw=none,pos=0.3] {0}
+%%           }
+%%           child {
+%%             node[fill=antiquefuchsia!70] {R}
+%%             edge from parent node[right,draw=none,pos=0.3] {1}
+%%           }
+%%           edge from parent node[left,draw=none,pos=0.3] {0}
+%%         }
+%%         child {
+%%           node[fill=antiquefuchsia!70] {A}
+%%           edge from parent node[right,draw=none,pos=0.3] {1}
+%%         };
+%%       \end{tikzpicture}
+%%       \end{center}
+
+%%       \begin{center}
+%%       \texttt{1001011000100001100000110000001011}
+%%       \end{center}
+%%    \end{multicols}
+
+
+   \begin{enumerate}
+    \item Tomamos el primer bit de la cadena \texttt{(1)} y recorremos el arbol desde la raiz, notamos que \texttt{1} es la rama derecha que tiene como hoja la letra 'A'. 
+          Entonces la agregamos a una lista.
+
+          \texttt{\textcolor{red}{1}001011000100001100000110000001011}
+
+         \begin{center}
+    %%      \includegraphics[scale=.14]{a.jpg}
+        \end{center}
+
+          \begin{center}
+            [A]
+          \end{center}
+           
+\newpage
+    \item Pasamos al segundo bit que es \texttt{(0)} y hacemos el recorrido al arbol desde la raiz, vemos que no es hoja, asi que nos tomamos el siguiente bit \texttt{(0)} que tampoco es hoja, nos volvemos a tomar el siguiente bit \texttt{(1)} que es hoja y contiene a 'V'.
+          Entonces 'V' la agregamos a la lista que teniamos 
+
+        \texttt{1\textcolor{red}{001}011000100001100000110000001011}  
+
+           \begin{center}
+  %%        \includegraphics[scale=.14]{v.jpg}
+        \end{center}
+
+          \begin{center}
+            [AV] 
+          \end{center}
+
+    \item Pasamos al siguiente bit despues de los bits que nos genera la anteriores letras. que en este caso es \texttt{01}. Recorremos el árbol y vemos que el cero no es hoja, seguimos recorriendo y vemos que 1 ya es hoja, así que agregamos a la lista al elemento que contiene, 'R'.
+    
+      \texttt{1001\textcolor{red}{01}1000100001100000110000001011}
+
+     \begin{center}
+      %%    \includegraphics[scale=.14]{r.jpg}
+        \end{center}
+    
+    \begin{center}
+            [AVR] 
+          \end{center} 
+          
+   \end{enumerate}
+
+   El proceso sigue hasta procesar todos los bits, agregando sus respectivas letras a la lista:
+   \begin{center}
+    \texttt{[AVRAHKADABRA]}
+   \end{center} 
+      
+
+
+  
+
+
+\section*{Actividades - Documentación}
+\begin{enumerate}
+  \item ¿Cuál es la diferencia entre la compresión con perdida y compresión sin perdida?
+  \item Investiga como se lleva a cabo la compresión de texto, images, videos y audio.
+  \item ¿A que se refiere el enfoque para la compresión de datos, códigos de longitud variable?
+  \item Crea 2 archivos de texto donde:
+        \begin{enumerate}
+          \item [a)] Ingresa una tus frases favoritas SIN ESPACIOS y revisa su contenido binario mediante el comando \texttt{xxd} y su peso en bytes.
+          \item [b)] Ingresa  la misma frase ahora CON ESPACIOS y revisa su contenido binario mediante el comando \texttt{xxd} y su peso en bytes.
+        \end{enumerate}
+        ¿Cuál es la diferencia respecto a contenido binario de los dos archivos?
+
+  \item Comprime la frase del anterior inciso y otra frase más, usando los algoritmos vistos. Para el primer algoritmo adjunta su representación binaria de inicio y final despúes de utilizarlo.  
+  \item ¿Por qué es necesario tener un respectivo árbol de Huffman para decodificar una cadena de texto? ¿Qué pasa si no lo tengo?     
+  \item ¿De qué manera las estrategias de optimización empleadas en el videojuego \textit{Grand Theft Auto V} para consolas de septima generación (PS3/Xbox 360) reflejan los principios fundamentales de la compresión de datos en comparación con las de octava generación?      
+\end{enumerate}
+
+
+\section*{Actividades - Implementación}
+\begin{enumerate}
+  \item Dada una cadena de texto, regresar la frecuencias de cada uno de sus caracteres.
+  \item Proporciona el arbol de Huffman asociado a una cadena de texto.
+  \item Implementa el algoritmo para codificar y comprimir una cadena de texto.
+  \item Implementa el algoritmo para decoficar un cadena de texto ya comprimida.
+  \item Agrega un ejemplo de cada algoritmo.
+\end{enumerate}
+
+
+\section*{Reporte}
+
+\begin{itemize}
+  \item Reporte detallado del proyecto (pdf) donde se considere:
+        \begin{itemize}
+          \item \textbf{Portada}. Nombre y número de cuenta del alumno
+          \item \textbf{Introducción.} Descripción del proyecto, objetivo y la importancia de conocer esta información.
+          \item \textbf{Desarrollo.} Explicar bajo que estrategias o enfoques se llevó a cabo el proyecto documentado paso a paso, además de cuales son las entradas y salidas estandar. Tambien en este criterio se llevan a cabo las actividades
+          \item \textbf{Conclusiones.} Como se pueden mejorar estos algoritmos, da otro enfoque (puede ser breve) desde la perspectiva de la programación imperativa, comentarios de lo que se llego a aprender, cuales fueron las dificultades y como se resolvieron al momento de implementar.
+          \item \textbf{Referencias.} Fuentes en formato \textit{APA 7}, se prohibe el uso de Wikipedia.
+        \end{itemize}
+\end{itemize}
+
+
+\section*{Material de Consulta}
+
+\begin{itemize}
+
+    \item Video: Huffman Coding Explained – Computerphile
+          \begin{center}
+          \textcolor{rositapastel}{\url{https://www.youtube.com/watch?v=JsTptu56GM8}}
+          \end{center}
+
+     \item De texto a Binario
+          \begin{center}
+          \textcolor{rositapastel}{\url{https://www.rapidtables.com/convert/number/ascii-to-binary.html}}
+          \end{center}
+
+     \item Implementación con JavaScript y Java.
+       \begin{center}
+          \textcolor{rositapastel}{\url{https://github.com/martacanirome4/HuffmanCoding?tab=readme-ov-file}}
+        \end{center}       
+       
+  \end{itemize}          
+
+
+
+\section*{Lineamientos para proyecto }
+\begin{itemize}
+    \item Se deben realizar \href{https://medium.com/@hfigueroa.dev/commits-at%C3%B3micos-f7e02434130}{\textcolor{red}{commits átomicos}}. Despúes de completar una funcionalidad o caracteristica realizar un commit, esto se debe de hacer periodicamente a lo largo del tiempo establecido del proyecto. (evaluable)
+    \item El proyecto debe contar con un archivo \texttt{README.md} donde se indique: Nombre del proyecto, objetivo, funcionamiento, ejecución, el tiempo requerido, y si es necesario comentarios extra.  
+     \item Toda función debe estar comentada.
+     \item Se debe hacer uso de modulos.
+     \item Prohibido el uso de \texttt{fold}.
+    \item Se debe de hacer uso de commits semánticos.
+    \item  Prohibido el uso de cualquier IA, la entrega de esta proyecto será sometida a la prueba Turing.
+    
+\end{itemize}
+
+\section*{Entregables.}
+
+Deberás compartir lo siguiente mediante  \textit{Google Classroom}:
+
+\begin{itemize}
+    \item Enlace a tu repositorio de \textit{GitHub}.
+    \item Reporte en formato pdf
+    \item Captura de pantalla de tu terminal al ejecutar el comando \texttt{git log} despúes de terminar tu proyecto. 
+\end{itemize}
+
+Tu repositorio debe estar organizado de la siguiente manera:\\
+
+
+\dirtree{%
+.1 \foldericon\ EstructurasDiscretas.
+.2 \foldericon\ Practica1/.
+.3 \faIcon[regular]{file-alt}\ README.md.
+.3  \faIcon[regular]{file-alt}\ practica1.md.
+.2 \foldericon\ Practica2/.
+.3 \faIcon[regular]{file-alt}\ practica2.hs.
+.3 \faIcon[regular]{file-alt}\ README.md.
+.2 \foldericon\ Practica3/.
+.3 \faIcon[regular]{file-alt}\ practica3.hs.
+.3 \faIcon[regular]{file-alt}\ README.md.
+.2 \foldericon\ Practica4/.
+.3 \faIcon[regular]{file-alt}\ natural.hs.
+.3 \faIcon[regular]{file-alt}\ mati.hs.
+.3 \faIcon[regular]{file-alt}\ Aux.hs.
+.3 \faIcon[regular]{file-alt}\ README.md.
+.2 \foldericon\ Practica5/.
+.3 \faIcon[regular]{file-alt}\ Practica5.hs.
+.3 \faIcon[regular]{file-alt}\ Aux.hs.
+.3 \faIcon[regular]{file-alt}\ README.md.
+.2 \foldericon\ Practica6/.
+.3 \faIcon[regular]{file-alt}\ Practica6.hs.
+.3 \faIcon[regular]{file-alt}\ Aux.hs.
+.3 \faIcon[regular]{file-alt}\ README.md.
+.2 \foldericon\ Proyecto/.
+.3 \faIcon[regular]{file-alt}\ \textcolor{rositapastel!110}{Proyecto.hs}.
+.3 \faIcon[regular]{file-alt}\ \textcolor{rositapastel!110}{Aux.hs}.
+.3 \faIcon[regular]{file-alt}\ \textcolor{rositapastel!110}{README.md}.
+.2  \faIcon[regular]{file-alt}\ README.md.
+.2  \faIcon[regular]{file-alt}\ LICENSE.
+}
+
+
+
+
+
+
+
+
+\end{document}
+
+
