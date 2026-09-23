@@ -17,7 +17,7 @@ public:
     map<string, string> getLista() const;
     void agregaUsuario(string nombre);
     void eliminaUsuario(string nombre);
-    void cambiaStatus(string usuario, string status);    
+    void cambiaStatus(const string& usuario, const string& status);    
     bool validaUsuario(string username);
 };
 
