@@ -14,7 +14,7 @@ public:
     void elimina(const string& username);
     bool existe(const string& username) const;
     int getSocket(const string& username) const;
-    const map<string, int>& getConexiones() const;
+    const map<string, int> getConexiones() const;
 };
 
 #endif
