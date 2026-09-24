@@ -3,7 +3,7 @@ para hacer el /build:
      `meson setup build`
 
 para compilar:
-     `ninja -C build`
+     `meson compile -C build`
 
 para ejecutar el cliente :
      `./build/cliente `
