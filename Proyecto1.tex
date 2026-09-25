@@ -149,14 +149,14 @@
 \centering
 \begin{tabular}{l}
 
-\large Daniel Rojo Mata \\[0.4cm]
+\large Cynthia Lizbeth Sánchez Urbano \\[0.4cm]
 \end{tabular}
 
 \large \uppercase{Ayudante de Laboratorio:}\\[0.2cm]
 \centering
 \begin{tabular}{l}
 
-\large Irvin Javier Cruz Gonzalez\\[0.4cm]
+\large Miriam Torres Bucio\\[0.4cm]
 \end{tabular}
 
 \vfill
@@ -164,29 +164,60 @@
 \end{center}
 \end{titlepage}
 
-\section*{Resumen}
-La idea del Proyecto 1 es crear un chat en línea en el que múltiples clientes se puedan conectar y mandar mensajes entre ellos, con otras diversas operaciones dentro de el chat, la idea es tener una sala general para todos los usuarios y que además cada uno pueda hacer sus salas privadas, invitando a otros usuarios, también podrán solicitar la lista de usuarios conectados, tanto para la sala general como para las que son parte, actualizar su estado, y desconectarse del chat.
-En este reporte vamos a ver primero una introducción con una descripción del proyecto, luego vamos a ver el proceso de analisis y modelado, hasta llegar a la implementación y posteriormente explicar las conclusiones.
 
 \section*{Introduccion}
-Este proyecto es
+
+Se debe crear un chat en línea al que multiples clientes puedan acceder y comunicarse entre ellos,se necesitan crear tanto un servidor como un cliente.
+El servidor se encargará de recibir las conexiones de los clientes, procesar los mensajes que reciba de ellos y actuar conforme a este, además de enviar respuestas a los mensajes y comunicar a otros clientes de algún cambio hecho.
+
+El cliente es un usuario del servidor, debe poder conectarse a él y realizar operaciones, además de esperar respuestas del servidor y otras notificaciones de cambios en el chat.
+
+Las operaciones que el usuario debe poder hacer en el chat son:
+
+  \begin{itemize}
+  \item \textbf{Identificarse:} ingresa un nombre de usuario válido
+  \item \textbf{Introducción:} Descripción del proyecto, objetivo y la importancia de conocer esta información.
+  \item \textbf{Asignarse un estado:} Escoger entre: ACTIVE, BUSY, AWAY.
+  \item \textbf{Ver usuarios:} Puede pedir la lista de usuarios conectados en el servidor.
+  \item \textbf{Enviar un texto privado:} Tener mensajes directos con otro usuario.
+  \item \textbf{Enviar un texto publico:} Mandar mensajes a todos los usuarios.
+  \item \textbf{Crear una sala:} Crear un espacio donde solo los usuarios invitados puedan unirse.
+  \item \textbf{Ver usuarios en una sala:} Pedir la lista de usuarios en una sala.
+  \item \textbf{Enviar mensaje a una sala:} Mandar mensajes a todos los usuarios en una sala.
+  \item \textbf{Enviar mensaje a una sala:} Mandar mensajes a todos los usuarios en una sala.
+  \item \textbf{Salir de una sala:} Salir de una sala a la que pertenezca.
+  \item \textbf{Desconectarse:} Salir del servidor y de todas las salas a la que pertenezca.    
+  \end{itemize}
 
 
-
-
-
+  Para que multiples clientes, incluso de diferentes computadoras se comuniquen con el servidor y viceversa se debe usar el protocolo establecido, entonces, usando JSON (JavaScript Object Notation, o notación de objetos en JavaScript), el servidor debe ser capaz de recibir los mensajes del cliente y actuar conforme a ellos y el cliente debe poder enviar los JSON al servidor, conforme a lo que el usuario pida (el usuario no debe escribir los JSON).
 
 
 \newpage
 \section*{Analisis y diseño}
 
-E chat se divide en dos partes, cliente y servidor:
+Como se explicó en la introducción, el chat se divide en dos partes, \textbf{Cliente} y \textbf{Servidor}, que deben poder funcionar con cualquier otro cliente y cualquier otro servidor, por lo que creé dos programas distintos, llamados, evidentemente, cliente y servidor:
 
 \subsection*{Cliente}
 
-El cliente es el que representa al usuario y debe tener ciertas operaciones como:
+El cliente es el que representa al usuario y debe tener las operaciones descritas antes, entonces lo que hace el cliente, es básicamente debe:
+\begin{itemize}
+\item \subsubsection*{Conectar al cliente al servidor}
+  Debe poder recibir y usar los datos del puerto y  la dirección que el usuario especifique para conectarse al servidor.
+\item \subsubsection*{Mandar mensajes al servidor}
+  Recibir las cadenas que el usuario escriba (el usuario no debe escribir el JSON), y ``traducirlas'' formando el JSON que se enviará al servidor.
+\item \subsubsection*{Recibir mensajes del servidor}
+  Recibir los JSON que mande el servidor y comunicarlos al cliente de manera comprensible.
+  
+\end{itemize}
+
+\subsection*{Servidor}
 
 
+
+\section*{Resumen}
+Durante este proyecto se creó un chat en línea en el que múltiples clientes se puedan conectar y mandar mensajes entre ellos, utilizando otras diversas operaciones dentro de el chat, se tiene  una sala general para todos los usuarios y que además cada uno pueda hacer sus salas privadas, invitando a otros usuarios, también podrán solicitar la lista de usuarios conectados, tanto para la sala general como para las que son parte, actualizar su estado, y desconectarse del chat.
+En este reporte vamos a ver primero una introducción con una descripción del proyecto, luego vamos a ver el proceso de analisis y modelado, hasta llegar a la implementación y posteriormente explicar las conclusiones.
 
   
 \newpage
@@ -601,16 +632,6 @@ El cliente es el que representa al usuario y debe tener ciertas operaciones como
 
 \section*{Reporte}
 
-\begin{itemize}
-  \item Reporte detallado del proyecto (pdf) donde se considere:
-        \begin{itemize}
-          \item \textbf{Portada}. Nombre y número de cuenta del alumno
-          \item \textbf{Introducción.} Descripción del proyecto, objetivo y la importancia de conocer esta información.
-          \item \textbf{Desarrollo.} Explicar bajo que estrategias o enfoques se llevó a cabo el proyecto documentado paso a paso, además de cuales son las entradas y salidas estandar. Tambien en este criterio se llevan a cabo las actividades
-          \item \textbf{Conclusiones.} Como se pueden mejorar estos algoritmos, da otro enfoque (puede ser breve) desde la perspectiva de la programación imperativa, comentarios de lo que se llego a aprender, cuales fueron las dificultades y como se resolvieron al momento de implementar.
-          \item \textbf{Referencias.} Fuentes en formato \textit{APA 7}, se prohibe el uso de Wikipedia.
-        \end{itemize}
-\end{itemize}
 
 
 \section*{Material de Consulta}
