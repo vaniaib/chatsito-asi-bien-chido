@@ -1,11 +1,27 @@
 project('chat', ['cs', 'cpp'])
 
-clases = [
+clasesc = [
        'servidor/ListaUsuarios.cpp',
        'servidor/Main.cpp',
        'servidor/Servidor.cpp',
-       'servidor/Mensaje.cpp'
+       'servidor/Mensaje.cpp',
+       'servidor/Sala.cpp',
+       'servidor/Conexion.cpp'
        ]      				
+clasescs = [
+	 'cliente/Main.cs',
+	 'cliente/Aplicacion.cs',
+	 'cliente/Escribe.cs',
+	 'cliente/Mensaje.cs',
+	 'cliente/Parser.cs',
+	 'cliente/Vista.cs'
+	 ]
 
-executable('cliente', 'Test.cs')
-executable('servidor', sources : clases)
+newtonsoft = meson.project_source_root() / 'libs/Newtonsoft.Json.dll'	
+
+
+executable('cliente', sources : clasescs,cs_args : [
+        '-r:' + newtonsoft
+    ])
+    
+executable('servidor', sources : clasesc)
