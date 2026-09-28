@@ -100,6 +100,8 @@ public:
   static string cadenaOperacion(Operation o);
   static string cadenaResultado(Result r);
   void anotaRespuesta(Type tipo, Operation operacion, Result resultado, string extra);
+  static string respuesta(Operation operacion, Result resultado, const string& extra);
+
   // para mensajes que manda el servidor
   //  static string anotaRespuesta(Operation operacion,Result resultado, const string& extra);
   static string nuevoUsuario(const string& username);

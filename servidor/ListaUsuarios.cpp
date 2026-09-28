@@ -1,13 +1,8 @@
 #include<bits/stdc++.h>
 #include "ListaUsuarios.h"
-//#include "Mensaje.h";
 using namespace std;
-//class ListaUsuarios{
-//private:
-//ListaUsuarios::map<string, string> lista;
-// Mensajero mensajerito;
-//public:
-//  ListaUsuarios(){}
+
+
 map<string, string>ListaUsuarios::getLista() const{
   return lista;
 }
@@ -26,12 +21,18 @@ void ListaUsuarios:: cambiaStatus(const string& usuario, const string& status){
   lista[usuario] = status;
 }
 
+string ListaUsuarios:: getEstado(string username){
+  return lista[username];
+}
+
 bool ListaUsuarios:: validaUsuario(string username){
   if(lista.find(username) == lista.end()){
     return true;
   }    
   return false;    
     
-};    
+};
+
+
 
   

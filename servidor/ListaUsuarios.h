@@ -10,15 +10,15 @@ class ListaUsuarios{
   
 private:  
   map<string, string> lista;
-  //Mensajero mensajerito;
 
 public:
   ListaUsuarios(){};
-    map<string, string> getLista() const;
-    void agregaUsuario(string nombre);
-    void eliminaUsuario(string nombre);
-    void cambiaStatus(const string& usuario, const string& status);    
-    bool validaUsuario(string username);
+  map<string, string> getLista() const;
+  void agregaUsuario(string nombre);
+  void eliminaUsuario(string nombre);
+  void cambiaStatus(const string& usuario, const string& status);    
+  bool validaUsuario(string username);
+  string getEstado(string user);
 };
 
 #endif

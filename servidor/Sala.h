@@ -9,9 +9,10 @@ private :
   ListaUsuarios usuariosEnlasala;
   string nombre;
   mutable mutex mutexSala;
+  unordered_set<string> listaInvitados;
   //  bool invitado;
 public:
-  map<string, bool> invitados;
+ //  map<string, bool> invitados;
   Sala(const string& nombre);
   // {
   //   this -> nombre = nombre;
@@ -21,6 +22,10 @@ public:
   ListaUsuarios& getUsuarios();
   void agregarAlasala(const string& s);
   void eliminadeSala(const string& s);
+  void agregaInvitado(const string& s);
+  void eliminaInvitado(const string& s);
+  bool buscaInvitado(const string& s);
+  bool buscaUser(const string& s);
   
 
 

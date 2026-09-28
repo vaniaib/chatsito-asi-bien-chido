@@ -101,6 +101,16 @@ string Mensaje::cadenaResultado(Result r){
       
   }
 }
+
+string Mensaje:: respuesta(Operation operacion, Result resultado, const string& extra){
+  json j = {
+    {"type", "RESPONSE"},
+    {"operation", cadenaOperacion(operacion)},
+    {"result", cadenaResultado(resultado)},
+    {"extra", extra}
+  };
+  return j.dump() + "\n";    
+}
 string Mensaje::nuevoUsuario(const string& username) {
   json j = {
     {"type", "NEW_USER"},
