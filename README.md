@@ -7,7 +7,11 @@ para compilar:
 
 para ejecutar el cliente :
      `./build/cliente `
+ip adress
+puerto
+
 
 para ejecutar el servidor :
      `./build/servidor `
+     puerto
 
