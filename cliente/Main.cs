@@ -9,12 +9,11 @@ public class Cliente{
 	    int puerto = int.Parse(Console.ReadLine());	
 	    Aplicacion aplicacion = new Aplicacion(puerto, ip);
 	    aplicacion.Conectar().Wait();
-	    Vista v =
-            new Vista(aplicacion);
+	    Vista v = new Vista(aplicacion);
 	    v.Iniciar().Wait();
 	    aplicacion.Desconectar();
 	}catch(Exception e){
 	    Console.Write("alo salio mal"+ e);
 	}
-    }   
-}
+				   }   
+		    }

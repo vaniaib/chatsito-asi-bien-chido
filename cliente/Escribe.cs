@@ -151,20 +151,18 @@ public static class Escribe{
     private static string msjAyuda(){
 	string s = "Para usar el chat debes:\n"
 	    + " ||IDENTIFY username\n"
-	    + " para identificarte en el servidor\n"
 	    + "||USERS"
-	    + "para ver a los usuarios conectados"
 	    + "||STATUS nuevo estado"
-	    + "para modificar tu estado"
 	    + "||TEXT destinatario mensaje"
 	    + "||PUBLIC_TEXT Hola a todos"
-	    + "||NEW_ROOM Sala1";
+	    + "||NEW_ROOM Sala1"
+	    + "||INVITE Sala1 Luis Antonio"	     
+	    + "||JOIN_ROOM Sala1"
+	    + " ||ROOM_USERS Sala1"
+	    + "||ROOM_TEXT Sala1 Hola sala"
+	    + "||LEAVE_ROOM Sala1"
+	    + " ||DISCONNECT";
 	return s;
-	    // ||INVITE Sala1 Luis Antonio
-	    // ||JOIN_ROOM Sala1
-	    // ||ROOM_USERS Sala1
-	    // ||ROOM_TEXT Sala1 Hola sala
-	    // ||LEAVE_ROOM Sala1
-	    // ||DISCONNECT"
+	   
 	    }
 			   }

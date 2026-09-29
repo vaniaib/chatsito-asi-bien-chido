@@ -10,6 +10,7 @@
 #include "ListaUsuarios.h"
 #include "Sala.h"
 #include "Mensaje.h"
+#include "Bitacora.h"
 using namespace std;
 
 class Servidor{
@@ -19,6 +20,7 @@ private:
   //sala general y demás salas
   Sala general;
   map<string, unique_ptr<Sala>> salas;
+  Bitacora b;
   //para mandar mensajes de repuestas
   Mensaje m;
   Mensaje::Type tipoRespuesta = Mensaje::Type::RESPONSE;

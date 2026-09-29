@@ -6,7 +6,8 @@ clasesc = [
        'servidor/Servidor.cpp',
        'servidor/Mensaje.cpp',
        'servidor/Sala.cpp',
-       'servidor/Conexion.cpp'
+       'servidor/Conexion.cpp',
+       'servidor/Bitacora.cpp'
        ]      				
 clasescs = [
 	 'cliente/Main.cs',

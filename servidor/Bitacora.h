@@ -10,7 +10,10 @@ private:
   string prefijo = "|=|";
   
 public:
-  string construyeBitacora(const string& usuario);
+  Bitacora(){};
+  void  construyeBitacora(const string& usuario, const string& msj);
+  string fechayhora();
+  
 };
 
 #endif

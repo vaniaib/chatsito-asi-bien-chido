@@ -19,7 +19,6 @@ public class Vista{
             string entrada = Console.ReadLine();
             if (string.IsNullOrWhiteSpace(entrada))
                 continue;
-	    //comandoparser.parsear
             Mensaje mensaje = Escribe.Traduce(entrada);
             if (mensaje == null)
                 continue;

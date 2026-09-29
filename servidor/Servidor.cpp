@@ -414,6 +414,7 @@ void Servidor::leeCliente(int socketcliente){
 	  usuarioActual = j.at("username");
 	  desconecta(usuarioActual, socketcliente);
 	}
+	i++;
 	if (tipo == "IDENTIFY") {
 	  usuarioActual = j.at("username");
 	  identificaUsuario(socketcliente,usuarioActual);
@@ -462,7 +463,8 @@ void Servidor::leeCliente(int socketcliente){
 	  enviaaUsuario(usuarioActual, mensaje);
 	  desconecta(usuarioActual, socketcliente);
 	}
-      }
+	b.construyeBitacora(usuarioActual, tipo);
+      }      
       catch (const json::exception& e) {
 	json j;
 	j["type"] = "RESPONSE";
